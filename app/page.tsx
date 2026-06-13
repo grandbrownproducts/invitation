@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import LoadingScreen from "@/components/intro/LoadingScreen";
 import InvitationBook from "@/components/intro/InvitationBook";
 import BackgroundEffects from "@/components/effects/BackgroundEffects";
 import Navigation from "@/components/layout/Navigation";
@@ -18,22 +17,13 @@ import Quote from "@/components/sections/Quote";
 import WishesWall from "@/components/sections/WishesWall";
 import RSVP from "@/components/sections/RSVP";
 
-type Stage = "loading" | "book" | "content";
+type Stage = "book" | "content";
 
 export default function Home() {
-  const [stage, setStage] = useState<Stage>("loading");
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setStage("book"), 2600);
-    return () => window.clearTimeout(timer);
-  }, []);
+  const [stage, setStage] = useState<Stage>("book");
 
   return (
     <>
-      <AnimatePresence>
-        {stage === "loading" && <LoadingScreen key="loading" />}
-      </AnimatePresence>
-
       <AnimatePresence>
         {stage === "book" && (
           <InvitationBook key="book" onOpen={() => setStage("content")} />

@@ -1,15 +1,36 @@
+import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
   eyebrow?: string;
   title: string;
   subtitle?: string;
+  icon?: LucideIcon;
+  iconClassName?: string;
   className?: string;
 }
 
-export default function SectionHeading({ eyebrow, title, subtitle, className }: SectionHeadingProps) {
+export default function SectionHeading({
+  eyebrow,
+  title,
+  subtitle,
+  icon: Icon,
+  iconClassName,
+  className,
+}: SectionHeadingProps) {
   return (
     <div className={cn("flex flex-col items-center gap-3 text-center", className)}>
+      {Icon && (
+        <span
+          className={cn(
+            "flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-gold-soft to-rose-gold text-white shadow-lg sm:h-14 sm:w-14",
+            iconClassName
+          )}
+          aria-hidden="true"
+        >
+          <Icon size={24} className="sm:size-7" />
+        </span>
+      )}
       {eyebrow && (
         <span className="font-sinhala text-sm uppercase tracking-[0.2em] text-rose-gold">
           {eyebrow}

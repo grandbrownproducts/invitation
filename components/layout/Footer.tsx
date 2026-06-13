@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Copy, Share2 } from "lucide-react";
+import { Check, Copy, Heart, Share2 } from "lucide-react";
 import { siteConfig } from "@/data/site";
 
 export default function Footer() {
@@ -40,6 +40,10 @@ export default function Footer() {
       <div className="ornament-divider mx-auto w-40">
         <span className="text-lg">❀</span>
       </div>
+
+      <span className="mx-auto mt-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blush-deep to-rose-gold text-white shadow-lg" aria-hidden="true">
+        <Heart size={22} fill="currentColor" />
+      </span>
 
       <p className="mt-4 font-script text-3xl text-rose-gold sm:text-4xl">
         {siteConfig.groomName} &amp; {siteConfig.brideName}

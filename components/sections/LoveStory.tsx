@@ -2,19 +2,31 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { BookHeart, Heart, Sparkles } from "lucide-react";
 import { loveStory } from "@/data/loveStory";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
 
+const MARKER_ICONS = [Sparkles, Heart, BookHeart];
+const MARKER_ACCENTS = ["from-sage to-sage-deep", "from-blush to-blush-deep", "from-gold-light to-gold"];
+
 export default function LoveStory() {
   return (
     <section id="story" className="relative px-6 py-20">
-      <SectionHeading eyebrow="Our Journey" title="Love Story" subtitle="ආදරයේ කතාව" />
+      <SectionHeading
+        eyebrow="Our Journey"
+        title="Love Story"
+        subtitle="ආදරයේ කතාව"
+        icon={BookHeart}
+        iconClassName="bg-gradient-to-br from-rose-gold to-blush-deep"
+      />
 
       <div className="mx-auto mt-12 max-w-3xl">
         <ol className="relative flex flex-col gap-12 before:absolute before:left-6 before:top-0 before:h-full before:w-px before:bg-gold/40 sm:before:left-1/2">
           {loveStory.map((item, index) => {
             const isEven = index % 2 === 0;
+            const MarkerIcon = MARKER_ICONS[index % MARKER_ICONS.length];
+            const accent = MARKER_ACCENTS[index % MARKER_ACCENTS.length];
             return (
               <li
                 key={item.year}
@@ -24,9 +36,14 @@ export default function LoveStory() {
                 )}
               >
                 <span
-                  className="absolute left-6 top-1.5 flex h-4 w-4 -translate-x-1/2 items-center justify-center rounded-full border-2 border-gold bg-cream sm:left-1/2"
+                  className={cn(
+                    "absolute left-6 top-1.5 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br text-white shadow-md sm:left-1/2",
+                    accent
+                  )}
                   aria-hidden="true"
-                />
+                >
+                  <MarkerIcon size={15} />
+                </span>
 
                 <motion.div
                   initial={{ opacity: 0, x: isEven ? -40 : 40 }}

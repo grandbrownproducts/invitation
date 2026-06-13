@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
-import { Check, HeartCrack, PartyPopper } from "lucide-react";
+import { Check, HeartCrack, HeartHandshake, PartyPopper } from "lucide-react";
 import { buildAcceptUrl } from "@/lib/whatsapp";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
@@ -36,6 +36,8 @@ export default function RSVP() {
         eyebrow="Kindly Respond"
         title="Will You Join Us?"
         subtitle="ඔබගේ පැමිණීම තහවුරු කරන්න"
+        icon={HeartHandshake}
+        iconClassName="bg-gradient-to-br from-blush-deep to-maroon"
       />
 
       <Reveal className="mx-auto mt-10 flex max-w-md flex-col gap-4 sm:flex-row">
@@ -53,7 +55,7 @@ export default function RSVP() {
           type="button"
           onClick={() => setShowDecline(true)}
           whileTap={{ scale: 0.96 }}
-          className="flex min-h-14 flex-1 items-center justify-center gap-2 rounded-full border border-maroon/40 bg-cream px-6 py-4 font-sinhala text-base font-semibold text-maroon shadow-lg transition-transform hover:scale-[1.02]"
+          className="flex min-h-14 flex-1 items-center justify-center gap-2 rounded-full border border-rose-gold/50 bg-gradient-to-r from-blush to-rose-gold-light px-6 py-4 font-sinhala text-base font-semibold text-maroon shadow-lg transition-transform hover:scale-[1.02]"
         >
           <HeartCrack size={20} aria-hidden="true" />
           සහභාගී විය නොහැක

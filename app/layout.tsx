@@ -95,7 +95,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="min-h-full flex flex-col bg-ivory text-maroon-deep">
+      <body className="min-h-full flex flex-col bg-ivory text-maroon-deep" suppressHydrationWarning>
         {children}
       </body>
     </html>

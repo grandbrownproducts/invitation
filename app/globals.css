@@ -10,6 +10,12 @@
   --color-rose-gold-light: #f2dede;
   --color-maroon: #5c1022;
   --color-maroon-deep: #3d0b16;
+  --color-blush: #f7dde6;
+  --color-blush-deep: #e58fac;
+  --color-sage: #d3e2d3;
+  --color-sage-deep: #8fae8b;
+  --color-lilac: #e6def2;
+  --color-lilac-deep: #a98fc9;
 
   --background: var(--color-ivory);
   --foreground: var(--color-maroon-deep);
@@ -33,6 +39,12 @@
   --color-rose-gold-light: var(--color-rose-gold-light);
   --color-maroon: var(--color-maroon);
   --color-maroon-deep: var(--color-maroon-deep);
+  --color-blush: var(--color-blush);
+  --color-blush-deep: var(--color-blush-deep);
+  --color-sage: var(--color-sage);
+  --color-sage-deep: var(--color-sage-deep);
+  --color-lilac: var(--color-lilac);
+  --color-lilac-deep: var(--color-lilac-deep);
 
   --font-display: var(--font-playfair);
   --font-script: var(--font-great-vibes);
@@ -110,6 +122,19 @@ body {
 [data-theme="dark"] .glass {
   background: rgba(60, 20, 28, 0.45);
   border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+/* Soft decorative glow orbs used behind section content */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .bg-orb {
+  opacity: 0.25;
 }
 
 /* Section divider ornament */

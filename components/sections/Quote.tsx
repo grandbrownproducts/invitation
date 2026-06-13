@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Flower2 } from "lucide-react";
 
 export default function Quote() {
   return (
@@ -12,6 +13,9 @@ export default function Quote() {
         transition={{ duration: 0.8 }}
         className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center"
       >
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-sage to-lilac text-white shadow-lg" aria-hidden="true">
+          <Flower2 size={22} />
+        </span>
         <span aria-hidden="true" className="font-script text-6xl text-gold">
           “
         </span>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Heart, Sparkles } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import Monogram from "@/components/ui/Monogram";
 import Reveal from "@/components/ui/Reveal";
@@ -11,6 +12,13 @@ export default function Hero() {
       id="invitation"
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-24 text-center"
     >
+      {/* Soft color orbs */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <span className="bg-orb -left-16 -top-16 h-64 w-64 bg-blush sm:h-80 sm:w-80" />
+        <span className="bg-orb -right-20 top-1/3 h-72 w-72 bg-sage sm:h-96 sm:w-96" />
+        <span className="bg-orb bottom-0 left-1/4 h-56 w-56 bg-lilac" />
+      </div>
+
       {/* Decorative floral corners */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <span className="absolute left-2 top-2 text-4xl text-gold/60 sm:left-6 sm:top-6 sm:text-6xl">❀</span>
@@ -20,8 +28,22 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 flex max-w-2xl flex-col items-center gap-6">
-        <Reveal>
+        <Reveal className="flex items-center gap-3">
+          <motion.span
+            animate={{ rotate: [0, 12, -12, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="text-rose-gold"
+          >
+            <Heart size={22} fill="currentColor" aria-hidden="true" />
+          </motion.span>
           <Monogram className="h-20 w-20 sm:h-24 sm:w-24" />
+          <motion.span
+            animate={{ rotate: [0, -360] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            className="text-gold"
+          >
+            <Sparkles size={22} aria-hidden="true" />
+          </motion.span>
         </Reveal>
 
         <Reveal delay={0.1}>

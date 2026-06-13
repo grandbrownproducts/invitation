@@ -1,19 +1,21 @@
 "use client";
 
-import { CalendarDays, Clock, MapPin, Navigation as NavigationIcon } from "lucide-react";
+import { CalendarDays, Clock, Landmark, MapPin } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import CallButton from "@/components/ui/CallButton";
 
 export default function VenueDetails() {
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-    siteConfig.venueMapsQuery
-  )}`;
-
   return (
     <section id="venue" className="relative px-6 py-20">
-      <SectionHeading eyebrow="Where & When" title="Event Details" subtitle="උත්සව විස්තර" />
+      <SectionHeading
+        eyebrow="Where & When"
+        title="Event Details"
+        subtitle="උත්සව විස්තර"
+        icon={Landmark}
+        iconClassName="bg-gradient-to-br from-lilac-deep to-rose-gold"
+      />
 
       <Reveal className="mx-auto mt-10 max-w-xl">
         <div className="glass overflow-hidden rounded-3xl shadow-xl">
@@ -26,7 +28,7 @@ export default function VenueDetails() {
 
           <div className="flex flex-col gap-5 px-6 py-6">
             <div className="flex items-start gap-4">
-              <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+              <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blush to-blush-deep text-white shadow-sm">
                 <CalendarDays size={20} aria-hidden="true" />
               </span>
               <div>
@@ -36,7 +38,7 @@ export default function VenueDetails() {
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+              <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sage to-sage-deep text-white shadow-sm">
                 <Clock size={20} aria-hidden="true" />
               </span>
               <div>
@@ -46,7 +48,7 @@ export default function VenueDetails() {
             </div>
 
             <div className="flex items-start gap-4">
-              <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+              <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-soft to-gold text-white shadow-sm">
                 <MapPin size={20} aria-hidden="true" />
               </span>
               <div>
@@ -57,7 +59,7 @@ export default function VenueDetails() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 px-6 pb-6 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 px-6 pb-6 sm:grid-cols-2">
             <a
               href={siteConfig.venueMapsUrl}
               target="_blank"
@@ -66,15 +68,6 @@ export default function VenueDetails() {
             >
               <MapPin size={18} aria-hidden="true" />
               සිතියම බලන්න
-            </a>
-            <a
-              href={directionsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex min-h-12 items-center justify-center gap-2 rounded-full border border-gold bg-gold/10 px-4 py-3 font-sinhala text-sm font-medium text-maroon transition-colors hover:bg-gold/20"
-            >
-              <NavigationIcon size={18} aria-hidden="true" />
-              මාර්ග උපදෙස්
             </a>
             <CallButton phone={siteConfig.venuePhone} phoneDisplay={siteConfig.venuePhoneDisplay} />
           </div>
