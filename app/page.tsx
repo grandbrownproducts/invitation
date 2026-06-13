@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useAutoScroll } from "@/hooks/useAutoScroll";
 import InvitationBook from "@/components/intro/InvitationBook";
 import BackgroundEffects from "@/components/effects/BackgroundEffects";
 import Navigation from "@/components/layout/Navigation";
@@ -21,6 +22,8 @@ type Stage = "book" | "content";
 
 export default function Home() {
   const [stage, setStage] = useState<Stage>("book");
+
+  useAutoScroll(stage === "content");
 
   return (
     <>
