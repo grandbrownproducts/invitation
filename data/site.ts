@@ -33,7 +33,7 @@ export const siteConfig = {
     "ආරාධනයට බොහෝම ස්තුතියි. එය සතුටින් පිළිගනිමි. ඔබ දෙපළට අපගේ හදපිරි සුබ පැතුම්!",
   whatsappDeclinePrefix:
     "ආරාධනාවට ස්තුතියි. අවාසනාවකට මට මෙම විවාහ උත්සවයට සහභාගී වීමට නොහැකි වේ.",
-  whatsappDeclineSuffix: "ඔබ දෙපළටත් ඔබගේ පවුල්වල සැමටත් සුබ පැතුම්!",
+  whatsappDeclineSuffix: "ඔබ දෙපළට මගේ සුබ පැතුම්!",
 } as const;
 
 export const declineReasons = [
