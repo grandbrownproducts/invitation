@@ -89,6 +89,13 @@ body {
   border-radius: 8px;
 }
 
+/* Force the script font for couple names — some Android browsers (e.g. Samsung
+   Internet with a custom system font set) override decorative/cursive web
+   fonts otherwise. */
+.font-script {
+  font-family: var(--font-script), "Brush Script MT", cursive !important;
+}
+
 /* Gold shimmer text */
 .text-shimmer {
   background: linear-gradient(
