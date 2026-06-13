@@ -1,4 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# විහඟ ❤️ සඳලි — Wedding Invitation
+
+A premium, mobile-first Sri Lankan wedding invitation site built with Next.js, TypeScript, Tailwind CSS and Framer Motion.
+
+## Content to customize before launch
+
+- **`data/site.ts`** — couple names, parents, date/time, venue details, and the WhatsApp number RSVPs are sent to (`whatsappNumber`).
+- **`data/loveStory.ts`** — love story timeline entries.
+- **`data/gallery.ts`** — photo gallery entries.
+- **`public/gallery/`**, **`public/story/`** — currently contain placeholder SVGs (`node scripts/generate-placeholders.mjs` regenerates them). Replace with real photos (jpg/png/webp) and update the paths/dimensions in the data files above.
+- **`public/music/wedding-theme.mp3`** — add your background music track here for the music player to work.
+- **`public/og-image.svg`** — social share preview image.
+
+---
 
 ## Getting Started
 

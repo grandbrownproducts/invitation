@@ -1,26 +1,152 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-gold: #d4af37;
+  --color-gold-light: #f3e2b3;
+  --color-gold-soft: #e8c777;
+  --color-ivory: #fffdf6;
+  --color-cream: #faf3e3;
+  --color-rose-gold: #c9a0a4;
+  --color-rose-gold-light: #f2dede;
+  --color-maroon: #5c1022;
+  --color-maroon-deep: #3d0b16;
+
+  --background: var(--color-ivory);
+  --foreground: var(--color-maroon-deep);
+}
+
+[data-theme="dark"] {
+  --background: #1a0f10;
+  --foreground: var(--color-cream);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-gold: var(--color-gold);
+  --color-gold-light: var(--color-gold-light);
+  --color-gold-soft: var(--color-gold-soft);
+  --color-ivory: var(--color-ivory);
+  --color-cream: var(--color-cream);
+  --color-rose-gold: var(--color-rose-gold);
+  --color-rose-gold-light: var(--color-rose-gold-light);
+  --color-maroon: var(--color-maroon);
+  --color-maroon-deep: var(--color-maroon-deep);
+
+  --font-display: var(--font-playfair);
+  --font-script: var(--font-great-vibes);
+  --font-sinhala-serif: var(--font-noto-serif-sinhala);
+  --font-sinhala: var(--font-yaldevi);
+  --font-body: var(--font-cormorant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body), serif;
+}
+
+/* Elegant scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 8px;
+}
+
+/* Gold shimmer text */
+.text-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--color-gold) 20%,
+    #fff6da 40%,
+    var(--color-gold-soft) 60%,
+    var(--color-gold) 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+[data-theme="dark"] .glass {
+  background: rgba(60, 20, 28, 0.45);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+/* Section divider ornament */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--color-gold);
+}
+
+.ornament-divider::before,
+.ornament-divider::after {
+  content: "";
+  height: 1px;
+  width: 3rem;
+  background: linear-gradient(to right, transparent, var(--color-gold));
+}
+
+.ornament-divider::after {
+  background: linear-gradient(to left, transparent, var(--color-gold));
+}
+
+/* Smooth focus ring for accessibility */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* High contrast helper */
+@media (prefers-contrast: more) {
+  :root {
+    --foreground: #2b0008;
+  }
 }
