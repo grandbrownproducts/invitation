@@ -32,8 +32,8 @@ export const siteConfig = {
   whatsappAcceptMessage:
     "ආරාධනයට බොහෝම ස්තුතියි. එය සතුටින් පිළිගනිමි. ඔබ දෙපළට අපගේ හදපිරි සුබ පැතුම්!",
   whatsappDeclinePrefix:
-    "Thank you for the invitation. Unfortunately, I am unable to attend the wedding.",
-  whatsappDeclineSuffix: "Best wishes to both of you and your families.",
+    "ආරාධනාවට ස්තුතියි. අවාසනාවකට මට මෙම විවාහ උත්සවයට සහභාගී වීමට නොහැකි වේ.",
+  whatsappDeclineSuffix: "ඔබ දෙපළටත් ඔබගේ පවුල්වල සැමටත් සුබ පැතුම්!",
 } as const;
 
 export const declineReasons = [

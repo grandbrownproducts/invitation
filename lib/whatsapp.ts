@@ -9,6 +9,6 @@ export function buildAcceptUrl(): string {
 }
 
 export function buildDeclineUrl(reason: string): string {
-  const message = `${siteConfig.whatsappDeclinePrefix}\n\nReason: ${reason}\n\n${siteConfig.whatsappDeclineSuffix}`;
+  const message = `${siteConfig.whatsappDeclinePrefix}\n\nහේතුව: ${reason}\n\n${siteConfig.whatsappDeclineSuffix}`;
   return whatsappUrl(message);
 }
