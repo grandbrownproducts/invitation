@@ -83,7 +83,7 @@ export default function InvitationBook({ onOpen }: InvitationBookProps) {
               <span className="font-sinhala-serif text-2xl text-gold-light sm:text-3xl">
                 {siteConfig.invitationLine1}
               </span>
-              <span className="font-script text-5xl text-gold sm:text-6xl">
+              <span className="font-sinhala-serif text-4xl text-gold sm:text-5xl">
                 {siteConfig.groomName} &amp; {siteConfig.brideName}
               </span>
               <span className="font-sinhala text-sm text-gold-light/90 sm:text-base">
