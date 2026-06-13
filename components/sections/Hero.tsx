@@ -65,7 +65,7 @@ export default function Hero() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-script text-5xl text-maroon sm:text-7xl"
+            className="font-sinhala-serif text-5xl text-maroon sm:text-7xl"
           >
             {siteConfig.groomName}
           </motion.span>
@@ -86,7 +86,7 @@ export default function Hero() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-script text-5xl text-maroon sm:text-7xl"
+            className="font-sinhala-serif text-5xl text-maroon sm:text-7xl"
           >
             {siteConfig.brideName}
           </motion.span>
