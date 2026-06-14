@@ -17,7 +17,7 @@ import VenueDetails from "@/components/sections/VenueDetails";
 import Quote from "@/components/sections/Quote";
 import WishesWall from "@/components/sections/WishesWall";
 import RSVP from "@/components/sections/RSVP";
-import type { ResponseStatus } from "@/lib/types";
+import type { ResponseStatus, Wish } from "@/lib/types";
 
 type Stage = "book" | "content";
 
@@ -27,7 +27,7 @@ export interface GuestInfo {
   responseStatus: ResponseStatus;
 }
 
-export default function HomeExperience({ guest }: { guest?: GuestInfo }) {
+export default function HomeExperience({ guest, wishes }: { guest?: GuestInfo; wishes: Wish[] }) {
   const [stage, setStage] = useState<Stage>("book");
 
   useAutoScroll(stage === "content");
@@ -59,7 +59,7 @@ export default function HomeExperience({ guest }: { guest?: GuestInfo }) {
           <Gallery />
           <VenueDetails />
           <Quote />
-          <WishesWall />
+          <WishesWall initialWishes={wishes} />
           <Footer />
         </motion.main>
       )}

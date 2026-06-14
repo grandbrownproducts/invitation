@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getGuestById } from "@/lib/services/guests";
+import { getAllWishes } from "@/lib/services/wishes";
 import HomeExperience from "@/components/HomeExperience";
 
 export async function generateMetadata({
@@ -30,9 +31,12 @@ export default async function InvitationPage({
     notFound();
   }
 
+  const wishes = await getAllWishes();
+
   return (
     <HomeExperience
       guest={{ id: guest.id, name: guest.name, responseStatus: guest.responseStatus }}
+      wishes={wishes}
     />
   );
 }

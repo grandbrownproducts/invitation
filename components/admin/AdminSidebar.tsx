@@ -9,6 +9,7 @@ import {
   BarChart3,
   LogOut,
   HeartHandshake,
+  MessageCircleHeart,
 } from "lucide-react";
 import { signOutAction } from "@/lib/auth/actions";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { href: "/administrator/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/administrator/guests", label: "Guests", icon: Users },
+  { href: "/administrator/wishes", label: "Wishes", icon: MessageCircleHeart },
   { href: "/administrator/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/administrator/settings", label: "Settings", icon: Settings },
 ];

@@ -1,5 +1,8 @@
 import HomeExperience from "@/components/HomeExperience";
+import { getAllWishes } from "@/lib/services/wishes";
 
-export default function Home() {
-  return <HomeExperience />;
+export default async function Home() {
+  const wishes = await getAllWishes();
+
+  return <HomeExperience wishes={wishes} />;
 }

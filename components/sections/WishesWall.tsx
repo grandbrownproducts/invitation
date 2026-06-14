@@ -1,58 +1,32 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, MessageCircleHeart, Send } from "lucide-react";
+import { Heart, MessageCircleHeart, Send, Loader2 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
+import { submitWishAction } from "@/app/actions/wishes";
+import type { Wish } from "@/lib/types";
 
-interface Wish {
-  id: string;
-  name: string;
-  message: string;
-}
-
-const STORAGE_KEY = "wedding-wishes";
-
-const SEED_WISHES: Wish[] = [
-  { id: "seed-1", name: "Amma & Thaththa", message: "May your home always be filled with love and laughter. Congratulations!" },
-  { id: "seed-2", name: "Nimal & Family", message: "Wishing you both a lifetime of happiness together. ❤️" },
-];
-
-export default function WishesWall() {
-  const [wishes, setWishes] = useState<Wish[]>(SEED_WISHES);
+export default function WishesWall({ initialWishes }: { initialWishes: Wish[] }) {
+  const [wishes, setWishes] = useState<Wish[]>(initialWishes);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed: Wish[] = JSON.parse(stored);
-        setWishes([...SEED_WISHES, ...parsed]);
-      }
-    } catch {
-      // ignore malformed storage
-    }
-  }, []);
-
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !message.trim()) return;
+    if (!name.trim() || !message.trim() || submitting) return;
 
-    const newWish: Wish = { id: crypto.randomUUID(), name: name.trim(), message: message.trim() };
-    const updated = [...wishes, newWish];
-    setWishes(updated);
-
+    setSubmitting(true);
     try {
-      const userWishes = updated.filter((w) => !w.id.startsWith("seed-"));
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(userWishes));
-    } catch {
-      // ignore storage errors
+      const wish = await submitWishAction(name, message);
+      setWishes((prev) => [...prev, wish]);
+      setName("");
+      setMessage("");
+    } finally {
+      setSubmitting(false);
     }
-
-    setName("");
-    setMessage("");
   };
 
   return (
@@ -93,9 +67,10 @@ export default function WishesWall() {
           />
           <button
             type="submit"
-            className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-maroon px-6 py-3 font-sinhala text-sm font-medium text-cream transition-colors hover:bg-maroon-deep"
+            disabled={submitting}
+            className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-maroon px-6 py-3 font-sinhala text-sm font-medium text-cream transition-colors hover:bg-maroon-deep disabled:opacity-60"
           >
-            <Send size={16} aria-hidden="true" />
+            {submitting ? <Loader2 size={16} className="animate-spin" aria-hidden="true" /> : <Send size={16} aria-hidden="true" />}
             Send Wishes
           </button>
         </form>

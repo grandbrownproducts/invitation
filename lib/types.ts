@@ -36,6 +36,13 @@ export interface GuestStats {
   pending: number;
 }
 
+export interface Wish {
+  id: string;
+  name: string;
+  message: string;
+  createdAt: string;
+}
+
 export interface WeddingSettings {
   groomName: string;
   brideName: string;
