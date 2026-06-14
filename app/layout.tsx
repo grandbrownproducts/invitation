@@ -5,6 +5,7 @@ import {
   Cormorant_Garamond,
   Noto_Serif_Sinhala,
   Yaldevi,
+  Inter,
 } from "next/font/google";
 import "./globals.css";
 
@@ -36,6 +37,12 @@ const yaldevi = Yaldevi({
   variable: "--font-yaldevi",
   subsets: ["sinhala", "latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -90,7 +97,7 @@ export default function RootLayout({
     <html
       lang="si"
       suppressHydrationWarning
-      className={`${playfair.variable} ${greatVibes.variable} ${cormorant.variable} ${notoSerifSinhala.variable} ${yaldevi.variable} h-full antialiased`}
+      className={`${playfair.variable} ${greatVibes.variable} ${cormorant.variable} ${notoSerifSinhala.variable} ${yaldevi.variable} ${inter.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

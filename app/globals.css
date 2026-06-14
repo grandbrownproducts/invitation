@@ -51,6 +51,7 @@
   --font-sinhala-serif: var(--font-noto-serif-sinhala);
   --font-sinhala: var(--font-yaldevi);
   --font-body: var(--font-cormorant);
+  --font-admin: var(--font-inter);
 }
 
 * {
@@ -181,4 +182,24 @@ textarea:focus-visible,
   :root {
     --foreground: #2b0008;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Admin dashboard: clear, plain sans-serif type and neutral, high-contrast
+   colors. The decorative serif/script fonts and gold-tinted theme are great
+   for the public invitation but make data-heavy admin screens harder to
+   scan, so the admin area opts into its own simple look.
+--------------------------------------------------------------------------- */
+.admin-area {
+  font-family: var(--font-admin), system-ui, -apple-system, sans-serif;
+  background: #f4f5f7;
+  color: #1f2933;
+}
+
+.admin-area h1,
+.admin-area h2,
+.admin-area h3,
+.admin-area h4 {
+  font-family: var(--font-admin), system-ui, -apple-system, sans-serif;
+  color: #111827;
 }
