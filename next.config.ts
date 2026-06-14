@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ["jose", "jwks-rsa"],
   images: {
     // Placeholder gallery/story assets are SVGs; replace with real photos
     // (jpg/png) in /public before deploying for best results.
