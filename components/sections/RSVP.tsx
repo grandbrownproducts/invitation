@@ -3,15 +3,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
-import { Check, HeartCrack, HeartHandshake, PartyPopper } from "lucide-react";
+import { Check, HeartCrack, HeartHandshake, PartyPopper, Loader2 } from "lucide-react";
 import { buildAcceptUrl } from "@/lib/whatsapp";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import DeclineModal from "@/components/sections/DeclineModal";
+import { submitRSVPAction } from "@/app/invitation/[guestId]/actions";
+import type { ResponseStatus } from "@/lib/types";
+import type { GuestInfo } from "@/components/HomeExperience";
 
-export default function RSVP() {
+export default function RSVP({ guest }: { guest?: GuestInfo }) {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showDecline, setShowDecline] = useState(false);
+  const [status, setStatus] = useState<ResponseStatus | undefined>(guest?.responseStatus);
+  const [loading, setLoading] = useState<"accepted" | "rejected" | null>(null);
 
   const handleAccept = () => {
     setShowSuccess(true);
@@ -30,6 +35,26 @@ export default function RSVP() {
     }, 1600);
   };
 
+  const handleGuestRespond = async (choice: "accepted" | "rejected") => {
+    if (!guest) return;
+    setLoading(choice);
+    try {
+      const result = await submitRSVPAction(guest.id, choice);
+      setStatus(result);
+
+      if (result === "accepted") {
+        confetti({
+          particleCount: 140,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ["#d4af37", "#c9a0a4", "#fffdf6", "#5c1022"],
+        });
+      }
+    } finally {
+      setLoading(null);
+    }
+  };
+
   return (
     <section id="rsvp" className="relative px-6 py-20">
       <SectionHeading
@@ -40,27 +65,66 @@ export default function RSVP() {
         iconClassName="bg-gradient-to-br from-blush-deep to-maroon"
       />
 
-      <Reveal className="mx-auto mt-10 flex max-w-md flex-col gap-4 sm:flex-row">
-        <motion.button
-          type="button"
-          onClick={handleAccept}
-          whileTap={{ scale: 0.96 }}
-          className="flex min-h-14 flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-soft to-gold px-6 py-4 font-sinhala text-base font-semibold text-maroon-deep shadow-lg transition-transform hover:scale-[1.02]"
-        >
-          <Check size={20} aria-hidden="true" />
-          සහභාගී වෙමි
-        </motion.button>
+      {guest ? (
+        status !== "pending" ? (
+          <Reveal className="mx-auto mt-10 max-w-md rounded-3xl border border-gold/40 bg-cream/60 px-6 py-8 text-center shadow-lg">
+            <p className="font-display text-lg font-semibold text-maroon">
+              {status === "accepted" ? "Thank you for accepting!" : "Thank you for letting us know"}
+            </p>
+            <p className="mt-2 font-sinhala text-sm text-maroon-deep/80">
+              {status === "accepted"
+                ? "ඔබගේ පැමිණීම තහවුරු කර ඇත. අපි ඔබව බලාපොරොත්තුවෙන් සිටිමු!"
+                : "ඔබගේ පිළිතුර ලැබුණි. සහභාගී විය නොහැකි වීම ගැන කනගාටුයි."}
+            </p>
+          </Reveal>
+        ) : (
+          <Reveal className="mx-auto mt-10 flex max-w-md flex-col gap-4 sm:flex-row">
+            <motion.button
+              type="button"
+              onClick={() => handleGuestRespond("accepted")}
+              disabled={loading !== null}
+              whileTap={{ scale: 0.96 }}
+              className="flex min-h-14 flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-soft to-gold px-6 py-4 font-sinhala text-base font-semibold text-maroon-deep shadow-lg transition-transform hover:scale-[1.02] disabled:opacity-60"
+            >
+              {loading === "accepted" ? <Loader2 size={20} className="animate-spin" aria-hidden="true" /> : <Check size={20} aria-hidden="true" />}
+              සහභාගී වෙමි
+            </motion.button>
 
-        <motion.button
-          type="button"
-          onClick={() => setShowDecline(true)}
-          whileTap={{ scale: 0.96 }}
-          className="flex min-h-14 flex-1 items-center justify-center gap-2 rounded-full border border-rose-gold/50 bg-gradient-to-r from-blush to-rose-gold-light px-6 py-4 font-sinhala text-base font-semibold text-maroon shadow-lg transition-transform hover:scale-[1.02]"
-        >
-          <HeartCrack size={20} aria-hidden="true" />
-          සහභාගී විය නොහැක
-        </motion.button>
-      </Reveal>
+            <motion.button
+              type="button"
+              onClick={() => handleGuestRespond("rejected")}
+              disabled={loading !== null}
+              whileTap={{ scale: 0.96 }}
+              className="flex min-h-14 flex-1 items-center justify-center gap-2 rounded-full border border-rose-gold/50 bg-gradient-to-r from-blush to-rose-gold-light px-6 py-4 font-sinhala text-base font-semibold text-maroon shadow-lg transition-transform hover:scale-[1.02] disabled:opacity-60"
+            >
+              {loading === "rejected" ? <Loader2 size={20} className="animate-spin" aria-hidden="true" /> : <HeartCrack size={20} aria-hidden="true" />}
+              සහභාගී විය නොහැක
+            </motion.button>
+          </Reveal>
+        )
+      ) : (
+        <Reveal className="mx-auto mt-10 flex max-w-md flex-col gap-4 sm:flex-row">
+          <motion.button
+            type="button"
+            onClick={handleAccept}
+            whileTap={{ scale: 0.96 }}
+            className="flex min-h-14 flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-soft to-gold px-6 py-4 font-sinhala text-base font-semibold text-maroon-deep shadow-lg transition-transform hover:scale-[1.02]"
+          >
+            <Check size={20} aria-hidden="true" />
+            සහභාගී වෙමි
+          </motion.button>
+
+          <motion.button
+            type="button"
+            onClick={() => setShowDecline(true)}
+            whileTap={{ scale: 0.96 }}
+            className="flex min-h-14 flex-1 items-center justify-center gap-2 rounded-full border border-rose-gold/50 bg-gradient-to-r from-blush to-rose-gold-light px-6 py-4 font-sinhala text-base font-semibold text-maroon shadow-lg transition-transform hover:scale-[1.02]"
+          >
+            <HeartCrack size={20} aria-hidden="true" />
+            සහභාගී විය නොහැක
+          </motion.button>
+        </Reveal>
+      )}
 
       <AnimatePresence>
         {showSuccess && (

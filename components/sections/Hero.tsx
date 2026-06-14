@@ -6,7 +6,7 @@ import { siteConfig } from "@/data/site";
 import Monogram from "@/components/ui/Monogram";
 import Reveal from "@/components/ui/Reveal";
 
-export default function Hero() {
+export default function Hero({ guestName }: { guestName?: string }) {
   return (
     <section
       id="invitation"
@@ -45,6 +45,14 @@ export default function Hero() {
             <Sparkles size={22} aria-hidden="true" />
           </motion.span>
         </Reveal>
+
+        {guestName && (
+          <Reveal delay={0.05}>
+            <p className="font-sinhala text-lg text-maroon-deep/90 sm:text-xl">
+              Dear {guestName},
+            </p>
+          </Reveal>
+        )}
 
         <Reveal delay={0.1}>
           <h1 className="text-shimmer font-sinhala-serif text-3xl font-bold leading-snug sm:text-5xl">
