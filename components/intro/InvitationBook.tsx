@@ -94,7 +94,7 @@ export default function InvitationBook({ onOpen }: InvitationBookProps) {
             <motion.button
               type="button"
               onClick={handleOpen}
-              className="rounded-full border border-gold bg-gold/10 px-8 py-3 font-sinhala text-base text-gold-light shadow-lg backdrop-blur transition-colors hover:bg-gold/20 sm:text-lg"
+              className="rounded-full border border-gold bg-gold/10 px-8 py-3 font-sinhala text-base text-gold-light shadow-lg transition-colors hover:bg-gold/20 sm:text-lg"
               whileTap={{ scale: 0.96 }}
               animate={{
                 boxShadow: [

@@ -2,6 +2,14 @@
   "name": "wedding",
   "version": "0.1.0",
   "private": true,
+  "browserslist": [
+    "chrome >= 64",
+    "safari >= 12",
+    "ios >= 12",
+    "firefox >= 67",
+    "samsung >= 9.2",
+    "edge >= 79"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
