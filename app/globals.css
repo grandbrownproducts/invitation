@@ -185,6 +185,70 @@ textarea:focus-visible,
 }
 
 /* ---------------------------------------------------------------------------
+   Older WebKit/WebView engines (notably in-app browsers like WhatsApp's on
+   many Android phones and pre-16.4 Safari) can't parse the "in oklab" color
+   space that Tailwind v4 uses for gradients and color-mix() opacity utilities.
+   When that happens the whole declaration is dropped, leaving gradients and
+   tinted backgrounds/borders/text fully transparent — e.g. the maroon
+   invitation cover renders as a blank white card. This block re-declares the
+   same utilities with plain rgba()/keyword values that every browser can
+   parse, scoped behind a feature query so modern browsers keep using the
+   oklab versions above.
+--------------------------------------------------------------------------- */
+@supports not (color: color-mix(in oklab, red, red)) {
+  .bg-gradient-to-br {
+    --tw-gradient-position: to bottom right;
+  }
+  .bg-gradient-to-r {
+    --tw-gradient-position: to right;
+  }
+
+  .bg-black\/40 { background-color: rgba(0, 0, 0, 0.4); }
+  .bg-black\/50 { background-color: rgba(0, 0, 0, 0.5); }
+  .bg-black\/60 { background-color: rgba(0, 0, 0, 0.6); }
+  .bg-black\/85 { background-color: rgba(0, 0, 0, 0.85); }
+  .bg-white\/10 { background-color: rgba(255, 255, 255, 0.1); }
+  .bg-white\/20 { background-color: rgba(255, 255, 255, 0.2); }
+
+  .bg-blush\/40 { background-color: rgba(247, 221, 230, 0.4); }
+  .bg-blush\/60 { background-color: rgba(247, 221, 230, 0.6); }
+  .bg-cream\/60 { background-color: rgba(250, 243, 227, 0.6); }
+  .bg-gold-light\/60 { background-color: rgba(243, 226, 179, 0.6); }
+  .bg-gold\/10 { background-color: rgba(212, 175, 55, 0.1); }
+  .bg-gold\/20 { background-color: rgba(212, 175, 55, 0.2); }
+  .bg-gold\/40 { background-color: rgba(212, 175, 55, 0.4); }
+  .bg-gold\/90 { background-color: rgba(212, 175, 55, 0.9); }
+  .bg-ivory\/80 { background-color: rgba(255, 253, 246, 0.8); }
+  .bg-lilac\/40 { background-color: rgba(230, 222, 242, 0.4); }
+  .bg-lilac\/50 { background-color: rgba(230, 222, 242, 0.5); }
+  .bg-maroon-deep\/30 { background-color: rgba(61, 11, 22, 0.3); }
+  .bg-rose-gold-light\/60 { background-color: rgba(242, 222, 222, 0.6); }
+  .bg-sage\/40 { background-color: rgba(211, 226, 211, 0.4); }
+
+  .border-blush-deep\/30 { border-color: rgba(229, 143, 172, 0.3); }
+  .border-gold-soft\/60 { border-color: rgba(232, 199, 119, 0.6); }
+  .border-gold-soft\/70 { border-color: rgba(232, 199, 119, 0.7); }
+  .border-gold\/20 { border-color: rgba(212, 175, 55, 0.2); }
+  .border-gold\/30 { border-color: rgba(212, 175, 55, 0.3); }
+  .border-gold\/40 { border-color: rgba(212, 175, 55, 0.4); }
+  .border-lilac-deep\/30 { border-color: rgba(169, 143, 201, 0.3); }
+  .border-rose-gold\/50 { border-color: rgba(201, 160, 164, 0.5); }
+  .border-sage-deep\/30 { border-color: rgba(143, 174, 139, 0.3); }
+
+  .ring-gold\/20 { --tw-ring-color: rgba(212, 175, 55, 0.2); }
+
+  .text-cream\/70 { color: rgba(250, 243, 227, 0.7); }
+  .text-cream\/80 { color: rgba(250, 243, 227, 0.8); }
+  .text-gold-light\/90 { color: rgba(243, 226, 179, 0.9); }
+  .text-gold\/60 { color: rgba(212, 175, 55, 0.6); }
+  .text-maroon-deep\/50 { color: rgba(61, 11, 22, 0.5); }
+  .text-maroon-deep\/70 { color: rgba(61, 11, 22, 0.7); }
+  .text-maroon-deep\/80 { color: rgba(61, 11, 22, 0.8); }
+  .text-maroon-deep\/85 { color: rgba(61, 11, 22, 0.85); }
+  .text-maroon-deep\/90 { color: rgba(61, 11, 22, 0.9); }
+}
+
+/* ---------------------------------------------------------------------------
    Admin dashboard: clear, plain sans-serif type and neutral, high-contrast
    colors. The decorative serif/script fonts and gold-tinted theme are great
    for the public invitation but make data-heavy admin screens harder to
